@@ -710,11 +710,11 @@ BOOST_AUTO_TEST_CASE( fix_linkauth_restriction ) { try {
       );
    };
 
-   validate_disallow("eosio", "linkauth");
-   validate_disallow("eosio", "unlinkauth");
-   validate_disallow("eosio", "deleteauth");
-   validate_disallow("eosio", "updateauth");
-   validate_disallow("eosio", "canceldelay");
+   validate_disallow("weos", "linkauth");
+   validate_disallow("weos", "unlinkauth");
+   validate_disallow("weos", "deleteauth");
+   validate_disallow("weos", "updateauth");
+   validate_disallow("weos", "canceldelay");
 
    validate_disallow("currency", "linkauth");
    validate_disallow("currency", "unlinkauth");
@@ -737,11 +737,11 @@ BOOST_AUTO_TEST_CASE( fix_linkauth_restriction ) { try {
             ("requirement", "first"));
    };
 
-   validate_disallow("eosio", "linkauth");
-   validate_disallow("eosio", "unlinkauth");
-   validate_disallow("eosio", "deleteauth");
-   validate_disallow("eosio", "updateauth");
-   validate_disallow("eosio", "canceldelay");
+   validate_disallow("weos", "linkauth");
+   validate_disallow("weos", "unlinkauth");
+   validate_disallow("weos", "deleteauth");
+   validate_disallow("weos", "updateauth");
+   validate_disallow("weos", "canceldelay");
 
    validate_allowed("currency", "linkauth");
    validate_allowed("currency", "unlinkauth");
@@ -958,7 +958,7 @@ BOOST_AUTO_TEST_CASE( forward_setcode_test ) { try {
    c.set_code( config::system_account_name, contracts::reject_all_wasm() );
    c.produce_block();
 
-   // Before activation, deploying a contract should work since setcode won't be forwarded to the WASM on eosio.
+   // Before activation, deploying a contract should work since setcode won't be forwarded to the WASM on weos.
    c.set_code( tester1_account, contracts::noop_wasm() );
 
    // Activate FORWARD_SETCODE protocol feature and then return contract on eosio back to what it was.
@@ -994,7 +994,7 @@ BOOST_AUTO_TEST_CASE( forward_setcode_test ) { try {
 
 
    // Going back to the backup chain, we can create the rejectall account while the reject_all contract is
-   // already deployed on eosio.
+   // already deployed on weos.
    c2.create_account( N(rejectall) );
    c2.produce_block();
    // Now all actions dispatched to the eosio account should be rejected.
